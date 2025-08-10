@@ -19,9 +19,13 @@ export API_KEYS=<AN_API_KEY>
 set API_KEYS=<AN_API_KEY>
 
 uv run fastapi dev main.py
+```
 
+---
 
-Configuración de MCP en VS Code (mcp.json)
+## ⚙️ Configuración de MCP en VS Code (`mcp.json`)
+
+```json
 {
     "inputs": [
         {
@@ -41,12 +45,26 @@ Configuración de MCP en VS Code (mcp.json)
         }
     }
 }
+```
 
-☁️ Desplegar en Azure Container Apps
+---
+
+## ☁️ Desplegar en Azure Container Apps
+
+```bash
 az containerapp up -g <RESOURCE_GROUP_NAME> -n weather-mcp --environment mcp -l westus --env-vars API_KEYS=<AN_API_KEY> --source .
-📌 Nota:
-Si el despliegue es exitoso, la CLI de Azure devolverá la URL de la aplicación. Usa esta URL para conectarte al servidor desde Visual Studio Code.
-🔄 Solución de problemas
+```
+
+📌 **Nota:**  
+Si el despliegue es exitoso, la **CLI de Azure** devolverá la **URL** de la aplicación. Usa esta URL para conectarte al servidor desde Visual Studio Code.
+
+---
+
+## 🔄 Solución de problemas
+
 Si el despliegue falla, intenta nuevamente actualizando la CLI y la extensión de Azure Container Apps:
+
+```bash
 az upgrade
 az extension add -n containerapp --upgrade
+```
