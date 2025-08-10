@@ -1,15 +1,14 @@
-# Azure Container Apps remote MCP server example
+# Ejemplo de servidor MCP remoto en Azure Container Apps
 
-This MCP server uses SSE transport and is authenticated with an API key.
+Este servidor MCP utiliza transporte **SSE** y se autentica con una **clave API**.
 
-## Running locally
+## 🚀 Ejecución local
 
-Prerequisites:
-* Python 3.11 or later
-* [uv](https://docs.astral.sh/uv/getting-started/installation/)
+### Requisitos previos
+- Python **3.11** o superior  
+- [uv](https://docs.astral.sh/uv/getting-started/installation/)
 
-Run the server locally:
-
+### Pasos
 ```bash
 uv venv
 uv sync
@@ -20,17 +19,15 @@ export API_KEYS=<AN_API_KEY>
 set API_KEYS=<AN_API_KEY>
 
 uv run fastapi dev main.py
-```
 
-VS Code MCP configuration (mcp.json):
 
-```json
+Configuración de MCP en VS Code (mcp.json)
 {
     "inputs": [
         {
             "type": "promptString",
             "id": "weather-api-key",
-            "description": "Weather API Key",
+            "description": "Clave API del servicio de clima",
             "password": true
         }
     ],
@@ -44,20 +41,12 @@ VS Code MCP configuration (mcp.json):
         }
     }
 }
-```
 
-## Deploy to Azure Container Apps
-
-```bash
+☁️ Desplegar en Azure Container Apps
 az containerapp up -g <RESOURCE_GROUP_NAME> -n weather-mcp --environment mcp -l westus --env-vars API_KEYS=<AN_API_KEY> --source .
-```
-
-If the deployment is successful, the Azure CLI returns the URL of the app. You can use this URL to connect to the server from Visual Studio Code.
-
-If the deployment fails, try again after updating the CLI and the Azure Container Apps extension:
-
-```bash
+📌 Nota:
+Si el despliegue es exitoso, la CLI de Azure devolverá la URL de la aplicación. Usa esta URL para conectarte al servidor desde Visual Studio Code.
+🔄 Solución de problemas
+Si el despliegue falla, intenta nuevamente actualizando la CLI y la extensión de Azure Container Apps:
 az upgrade
 az extension add -n containerapp --upgrade
-```
-
